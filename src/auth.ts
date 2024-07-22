@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Naver from 'next-auth/providers/naver';
 
-const authOptions = {
+export default NextAuth({
   providers: [
     Naver({
       clientId: process.env.AUTH_NAVER_ID!,
@@ -16,7 +16,15 @@ const authOptions = {
     maxAge: 60 * 60, // 세션 만료 시간(sec)
   },
   callbacks: {
+    signIn: async ({ account, profile, user }) => {
+      console.log('call 엄준식');
+      console.log(account, profile, user);
+      if (account?.provider === 'google') {
+      }
+      return true;
+    },
     jwt: async ({ token, user, trigger, session }) => {
+      console.log('call 엄준식2');
       console.log('token', token, 'user', user, 'trigger', trigger, 'session', session);
       if (user) {
         token = { ...token, ...user };
@@ -24,10 +32,7 @@ const authOptions = {
       return token;
     },
     session: async ({ session, token }) => {
-      session.token = token.token as string;
-      session.role = token.role;
       return session;
     },
   },
-};
-export default authOptions;
+});
