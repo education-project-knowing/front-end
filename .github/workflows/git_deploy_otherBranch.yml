@@ -26,7 +26,7 @@ jobs:
           source-directory: 'output'
           destination-github-username: 'Lamyzm'
           destination-repository-name: 'front-end'
-          user-email: ${{ secrets.EMAIL_FRONT }}
+          user-email: 'ajvls98@gmail.com'
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
 
