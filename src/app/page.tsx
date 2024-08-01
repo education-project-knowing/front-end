@@ -11,7 +11,7 @@ export default function Home() {
 
   usePreventNavigation();
 
-  const handleClick = (e: MouseEvent, href: string) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const userConfirmed = window.confirm('학습을 마치시겠습니까?');
     if (userConfirmed) {
