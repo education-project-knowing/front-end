@@ -7,15 +7,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache
+      - name: List directory contents before build
+        run: ls -la
 
-      - name: creates output
-        run: sh ./build.sh
+      - name: Prepare files for push
+        run: |
+          mkdir output
+          find . -maxdepth 1 -not -name 'output' -not -name '.' -not -name '..' -exec cp -R {} output/ \;
+
+      - name: List output directory contents
+        run: ls -la output
 
       - name: Pushes to another repository
         id: push_directory
@@ -23,7 +27,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.GHCR_TOKEN_FRONT }}
         with:
-          source-directory: '.'
+          source-directory: 'output'
           destination-github-username: 'Lamyzm'
           destination-repository-name: 'front-end'
           user-email: 'ajvls98@gmail.com'
