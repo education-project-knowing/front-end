@@ -2,6 +2,9 @@ import StarIconComp from '@/asset/icon/icons/ic-star.svg';
 import { FaRegCircle } from 'react-icons/fa';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { CiSearch as CiSearchComp } from 'react-icons/ci';
+import { LiaRandomSolid as LiaRandomSolidComp } from 'react-icons/lia';
+import { FaUserAlt as FaUserAltComp } from 'react-icons/fa';
+import { RxHamburgerMenu as RxHamburgerMenuComp } from 'react-icons/rx';
 
 export function RoundStarIcon({ ...props }) {
   return (
@@ -20,6 +23,18 @@ export function FaRegCircleCheckIcon() {
   return <FaRegCircleCheck />;
 }
 
+export function LiaRandomSolid() {
+  return <LiaRandomSolidComp />;
+}
+
 export function CiSearch() {
   return <CiSearchComp />;
+}
+
+export function FaUserAlt({ ...props }) {
+  return <FaUserAltComp {...props} />;
+}
+
+export function RxHamburgerMenu({ ...props }) {
+  return <RxHamburgerMenuComp {...props} />;
 }

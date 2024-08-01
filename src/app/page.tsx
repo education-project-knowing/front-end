@@ -1,29 +1,24 @@
 'use client';
 import { useTheme } from 'next-themes';
-import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-
-const usePageLeaveWarning = (message: any) => {
-  useEffect(() => {
-    const handleWindowClose = (e: any) => {
-      e.preventDefault();
-      e.returnValue = message;
-      return message;
-    };
-
-    window.addEventListener('beforeunload', handleWindowClose);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleWindowClose);
-    };
-  }, [message]);
-};
+import Link from 'next/link';
+import { usePreventNavigation } from '@/hooks/usePreventNavigation';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
-  usePageLeaveWarning('이 페이지를 벗어나면 변경 사항이 저장되지 않습니다. 계속하시겠습니까?');
+  const router = useRouter();
 
-  console.log(theme);
+  usePreventNavigation();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const userConfirmed = window.confirm('학습을 마치시겠습니까?');
+    if (userConfirmed) {
+      router.push(href);
+    }
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>안녕하시지!!!!</h1>
@@ -36,6 +31,11 @@ export default function Home() {
         <button>네이버 로그인</button>
       </div>
       <Button>hi</Button>
+      <Link
+        href="main"
+        onClick={e => handleClick(e, 'main')}>
+        main
+      </Link>
       <select
         className="bg-background"
         value={theme}

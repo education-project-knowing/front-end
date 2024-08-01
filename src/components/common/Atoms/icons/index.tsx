@@ -3,12 +3,17 @@
 import { LocalIcon } from '@/asset/icon';
 import { cn } from '@/lib/utils';
 
-export function RoundStarIcon({ className, ...props }: { className?: string }) {
+type RoundStarIconProps = Omit<React.ComponentProps<typeof LocalIcon>, 'name'> & {
+  className?: string;
+  color?: string;
+};
+
+export function RoundStarIcon({ className, color = 'none', ...props }: RoundStarIconProps) {
   return (
     <LocalIcon
       name="RoundStarIcon"
       className={cn('h-4 w-4 overflow-visible stroke-[#FFD233] stroke-[3px]', className)}
-      color="none"
+      color={color}
       {...props}
     />
   );
