@@ -38,4 +38,4 @@ jobs:
         env:
           GHCR_TOKEN_FRONT: ${{ secrets.GHCR_TOKEN_FRONT }}
         run: |
-          git push https://${{ secrets.GHCR_TOKEN_FRONT }}@github.com/Lamyzm/front-end.git main
+          git push https://${{ secrets.GHCR_TOKEN_FRONT }}@github.com/Lamyzm/front-end main
