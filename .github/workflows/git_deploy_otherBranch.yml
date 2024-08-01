@@ -21,7 +21,7 @@ jobs:
           git config --global user.email 'action@github.com'
 
       - name: Add upstream repository
-        run: git remote add upstream https://github.comeducation-project-knowing/front-end.git
+        run: git remote add upstream https://github.com/education-project-knowing/front-end.git
 
       - name: Add personal fork as a remote
         run: git remote add fork https://github.com/Lamyzm/front-end.git
