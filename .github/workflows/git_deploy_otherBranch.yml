@@ -23,7 +23,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.GHCR_TOKEN_FRONT }}
         with:
-          source-directory: 'output'
+          source-directory: '.'
           destination-github-username: 'Lamyzm'
           destination-repository-name: 'front-end'
           user-email: 'ajvls98@gmail.com'
