@@ -1,38 +1,35 @@
-name: git push into another repo to deploy to vercel
+name: Sync to Fork
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: List directory contents before build
-        run: ls -la
-
-      - name: Prepare files for push
+      - name: Set up Git
         run: |
-          mkdir output
-          find . -maxdepth 1 -not -name 'output' -not -name '.' -not -name '..' -exec cp -R {} output/ \;
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
 
-      - name: List output directory contents
-        run: ls -la output
+      - name: Add personal fork as a remote
+        run: git remote add fork https://github.com/Lamyzm/front-end.git
 
-      - name: Pushes to another repository
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
+      - name: Fetch upstream changes
+        run: git fetch upstream
+
+      - name: Merge changes
+        run: |
+          git checkout main
+          git merge upstream/main
+
+      - name: Push changes to fork
+        run: git push fork main
         env:
           API_TOKEN_GITHUB: ${{ secrets.GHCR_TOKEN_FRONT }}
-        with:
-          source-directory: 'output'
-          destination-github-username: 'Lamyzm'
-          destination-repository-name: 'front-end'
-          user-email: 'ajvls98@gmail.com'
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
-
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
