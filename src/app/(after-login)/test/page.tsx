@@ -25,7 +25,7 @@ export default async function Card() {
           </div>
           {/* 학습시간 section */}
           <div>
-            <p>학습시간!</p>
+            <p>학습시간!!</p>
             <p>01 : 12 : 04</p>
           </div>
         </div>
