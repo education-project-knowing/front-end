@@ -2,16 +2,24 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
+import { useForm } from 'react-hook-form';
 import { Checkbox } from '@/components/ui/checkbox';
 import SearchInput from '@/components/common/Monocles/SearchInput';
 import StarsRating from '@/app/(after-login)/(quiz)/questions/_components/StarsRating';
 import CustomPagination from '@/app/(after-login)/(quiz)/questions/_components/CustomPagination';
 import Link from 'next/link';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Item {
   id: number;
   title: string;
+}
+
+export interface FormInput {
+  inputField: string;
+  account: string;
+  role: string;
+  [key: string]: any;
 }
 
 export default function Page() {
@@ -38,6 +46,14 @@ export default function Page() {
     }
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitted },
+  } = useForm<FormInput>({
+    criteriaMode: 'all',
+    mode: 'onBlur',
+  });
   useEffect(() => {
     const page = Number(searchParams.get('page')) || 1;
     fetchItems(page);
@@ -50,7 +66,7 @@ export default function Page() {
       {/* TODO: 이부분 전역 상태로 저장했다가
       추후 검색버튼 누르면 쿼리 스트링에 삽입, 이러면 서버 사이드 랜더링도 안깨짐.  */}
       {/* filter */}
-      <div className="mb-10 flex w-5/6 flex-col items-start justify-between gap-3 self-center justify-self-center text-nowrap rounded-md bg-white px-5 md:flex-row md:items-center">
+      <form className="mb-10 flex w-5/6 flex-col items-start justify-between gap-3 self-center justify-self-center text-nowrap rounded-md bg-white px-5 md:flex-row md:items-center">
         <p className="self-center md:self-start">필터</p>
         <div className="flex items-center">
           <Checkbox />
@@ -60,25 +76,18 @@ export default function Page() {
           <Checkbox />
           <p className="ml-2">모르는 문제</p>
         </div>
-        <div className="flex items-center gap-3">
-          <Checkbox />
-          <StarsRating className="w-3" />
-        </div>
-        <div className="flex items-center gap-3">
-          <Checkbox />
-          <StarsRating
-            className="w-3"
-            rating={2}
-          />
-        </div>
-        <div className="*: flex items-center gap-3">
-          <Checkbox />
-          <StarsRating
-            className="w-3"
-            rating={3}
-          />
-        </div>
-      </div>
+        {Array.from({ length: 3 }, (_, index) => (
+          <div
+            key={index}
+            className="flex items-center gap-3">
+            <Checkbox />
+            <StarsRating
+              className="w-3"
+              rating={(index + 1) as 1 | 2 | 3}
+            />
+          </div>
+        ))}
+      </form>
       {/* contents */}
       {items && items.length > 0 ? (
         <ul className="space-y-4">
