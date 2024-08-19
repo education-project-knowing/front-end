@@ -1,22 +1,11 @@
 'use client';
-
-import { useTheme } from 'next-themes';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import * as PopoverRadix from '@radix-ui/react-popover';
-import { LocalIcon } from '@/asset/icon';
-import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
-import NavPopOver from '@/components/navigations/components/NavPopOver';
 import NavMenu from '@/components/navigations/components/NavMenu';
 
 export default function Navigation() {
-  // 다크모드를 위한 기능.
-  const { theme, setTheme } = useTheme();
-
   const pathname = usePathname();
-  // 특정 URL 경로 정의
+  // 감출 컴포넌트 url
   const hideComponents = ['/test', '/another-url']; // URL 경로 목록
-
   const showBackButton = hideComponents.includes(pathname);
 
   return (
@@ -30,7 +19,6 @@ export default function Navigation() {
         </a>
         {!showBackButton && <p className="hidden md:block">IT 기술면접을 위한 CS지식 랜덤 퀴즈</p>}
       </div>
-
       <NavMenu />
     </nav>
   );

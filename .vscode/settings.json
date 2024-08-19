@@ -32,7 +32,5 @@
     "_types": "Typescript",
     "_utils": "Utils",
     "(route)": "Routes"
-  },
-  "typescript.preferences.autoImportFileExcludePatterns": ["node_modules/*"],
-  "javascript.preferences.autoImportFileExcludePatterns": ["node_modules/*"]
+  }
 }

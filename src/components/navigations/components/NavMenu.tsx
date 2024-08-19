@@ -2,8 +2,11 @@ import React from 'react';
 import { LocalIcon } from '@/asset/icon';
 import { Button } from '@/components/ui/button';
 import NavPopOver from '@/components/navigations/components/NavPopOver';
+import { useTheme } from 'next-themes';
 
 export default function NavMenu() {
+  // 다크모드를 위한 기능.
+  const { theme, setTheme } = useTheme();
   // prettier-ignore
   const menu = [
     '마이페이지',
@@ -16,12 +19,10 @@ export default function NavMenu() {
       <NavPopOver
         popoverTrigger={
           <>
-            <Button
-              variant={'none'}
-              className="p-0 font-bold">
+            <div className="flex items-center font-bold">
               <p>랜덤퀴즈</p>
               <LocalIcon name="LiaRandomSolid" />
-            </Button>
+            </div>
           </>
         }
         popoverContent={
