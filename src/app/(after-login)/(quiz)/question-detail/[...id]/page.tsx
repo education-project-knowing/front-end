@@ -1,8 +1,9 @@
 import RatingRadio from '@/app/(after-login)/(quiz)/question-detail/components/RatingRadio';
 
-export default function Page() {
+export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div>
+      <h1>My Post: {params.slug}</h1>
       {/* title */}
       <div className="mb-3 rounded-lg bg-[#738660] px-5 pb-7">
         <h4 className="p-3 text-2xl font-bold text-[#ded29a]">Question</h4>
