@@ -1,4 +1,4 @@
-import RatingRadio from '@/app/(after-login)/(quiz)/question-detail/_components/RatingRadio';
+import RatingRadio from '@/app/(after-login)/(quiz)/question-detail/components/RatingRadio';
 
 export default function Page() {
   return (

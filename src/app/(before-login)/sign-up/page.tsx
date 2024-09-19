@@ -201,8 +201,8 @@ const TimerInput = ({ errors }: { errors: any }) => {
 
 // 단계 정의
 const steps = [
-  { name: '회원 가입', component: PersonalInfo },
   { name: '약관 동의', component: dynamic(() => import('@/app/(before-login)/sign-up/components/TermsAgreement')) },
+  { name: '회원 가입', component: PersonalInfo },
 ];
 
 export default function SignupProcess() {
