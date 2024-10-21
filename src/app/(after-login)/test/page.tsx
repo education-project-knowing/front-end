@@ -1,4 +1,6 @@
 import { LocalIcon } from '@/asset/icon';
+import Link from 'next/link';
+
 // 메인페이지 퀴즈 카드
 export default async function Card() {
   const twFlexRow = 'flex flex-row text-nowrap';
@@ -6,9 +8,9 @@ export default async function Card() {
     <article className="flex h-full flex-col items-center gap-5 rounded-2xl bg-[#738660] px-5 py-9">
       <div className="flex h-fit w-full flex-col items-start rounded-2xl bg-[#c1cab5] px-10 py-10">
         {/* title */}
-        <a href="/questions">
+        <Link href="/questions">
           <h4 className="text-nowrap text-2xl font-bold">데이터 베이스</h4>
-        </a>
+        </Link>
 
         <p className="text-xs text-gray-700">데이터를 효율적으로 저장 어쩌구저쩌구</p>
         {/* content */}
