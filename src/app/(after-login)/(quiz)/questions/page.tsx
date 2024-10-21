@@ -1,5 +1,5 @@
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { cache, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Checkbox } from '@/components/ui/checkbox';
 import SearchInput from '@/components/common/Monocles/SearchInput';
@@ -23,9 +23,12 @@ export interface FormInput {
 
 export default async function Page({ searchParams }: { searchParams: string }) {
   const itemsPerPage = 10; // 페이지당 아이템 갯수
+  console.log('빵에에요! 퀘스천 디테일이에요!');
   const fetchItems = async (page: any): Promise<Item[]> => {
     try {
-      const response = await fetch(`http://localhost:3000/api/questions?page=${page}&limit=${itemsPerPage}`);
+      const response = await fetch(`http://localhost:3000/api/questions?page=${page}&limit=${itemsPerPage}`, {
+        next: { revalidate: 3 },
+      });
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

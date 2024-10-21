@@ -1,5 +1,7 @@
 import { LocalIcon } from '@/asset/icon';
 import Link from 'next/link';
+import ClientC from '@/app/(after-login)/test/components/ClientC';
+import { Suspense } from 'react';
 
 // 메인페이지 퀴즈 카드
 export default async function Card() {
@@ -8,7 +10,9 @@ export default async function Card() {
     <article className="flex h-full flex-col items-center gap-5 rounded-2xl bg-[#738660] px-5 py-9">
       <div className="flex h-fit w-full flex-col items-start rounded-2xl bg-[#c1cab5] px-10 py-10">
         {/* title */}
-        <Link href="/questions">
+        <Link
+          href="/questions"
+          prefetch={true}>
           <h4 className="text-nowrap text-2xl font-bold">데이터 베이스</h4>
         </Link>
 
@@ -37,6 +41,9 @@ export default async function Card() {
         <button className="h-full w-fit text-nowrap bg-[#e0bd6b] px-3 py-2">퀴즈 범위</button>
         <button className="h-full w-full bg-[#e0bd6b]">공부하기</button>
       </div>
+      <Suspense fallback={<div>loading</div>}>
+        <ClientC />
+      </Suspense>
     </article>
   );
 }

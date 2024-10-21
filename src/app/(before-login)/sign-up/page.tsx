@@ -222,6 +222,7 @@ export default function SignupProcess() {
     <div className="mx-auto w-full rounded-xl bg-white px-10 pb-8 pt-3 sm:max-w-[540px]">
       <h2>{steps[currentStep].name}</h2>
       <CurrentStepComponent onNext={nextStep} />
+      <button onClick={prevStep}>이전으로가기</button>
     </div>
   );
 }

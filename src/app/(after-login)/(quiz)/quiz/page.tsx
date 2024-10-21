@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Button } from '@/components/ui/button';
 
 export default function Page() {
+  console.log('빵에에요! 퀴즈에요!');
   return (
     <div>
       <div className="mb-3 rounded-lg bg-[#738660] px-5 pb-7">
