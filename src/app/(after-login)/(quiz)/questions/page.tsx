@@ -1,6 +1,3 @@
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { Checkbox } from '@/components/ui/checkbox';
 import SearchInput from '@/components/common/Monocles/SearchInput';
 import StarsRating from '@/app/(after-login)/(quiz)/questions/_components/StarsRating';
@@ -21,12 +18,13 @@ export interface FormInput {
   [key: string]: any;
 }
 
-export default async function Page({ searchParams }: { searchParams: string }) {
+export default async function Page(props: { searchParams: Promise<string> }) {
+  const searchParams = await props.searchParams;
   const itemsPerPage = 10; // 페이지당 아이템 갯수
   console.log('searchParams', searchParams, searchParams ?? 1);
   const fetchItems = async (page: any): Promise<Item[]> => {
     try {
-      const response = await fetch(`http://localhost:3000/api/questions?page=${page}&limit=${itemsPerPage}`);
+      const response = await fetch(`http://localhost:3001/api/questions?page=${page}&limit=${itemsPerPage}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

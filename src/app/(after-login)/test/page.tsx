@@ -1,9 +1,36 @@
-import { LocalIcon } from '@/asset/icon';
 import Link from 'next/link';
+import { trace } from '@opentelemetry/api';
+import { Span } from '@opentelemetry/api';
+import { UserService } from '@/service/api';
+import ClientComp from '@/app/(after-login)/test/components/client-comp';
+import { Suspense } from 'react';
+import ClientC from '@/app/(after-login)/test/components/client-comp';
+
+const delay = async () => {
+  return await new Promise<string>(resolve => {
+    setTimeout(() => {
+      resolve('업데이트된 텍스트');
+    }, 2000);
+  });
+};
+
+const fetchFnc = async (): Promise<any[]> => {
+  // return await UserService.postPublicUsers();
+  return await new Promise<any>(resolve => {
+    setTimeout(async () => {
+      resolve(await UserService.postPublicUsers());
+    }, 2000);
+  });
+};
 
 // 메인페이지 퀴즈 카드
 export default async function Card() {
   const twFlexRow = 'flex flex-row text-nowrap';
+  const promise = delay();
+
+  const cats = await UserService.getPublicUsers();
+  // const postCat = await UserService.postPublicUsers();
+  // console.log('Cats fetched:', cats);
   return (
     <article className="flex h-full flex-col items-center gap-5 rounded-2xl bg-[#738660] px-5 py-9">
       <div className="flex h-fit w-full flex-col items-start rounded-2xl bg-[#c1cab5] px-10 py-10">
@@ -11,7 +38,6 @@ export default async function Card() {
         <Link href="/questions">
           <h4 className="text-nowrap text-2xl font-bold">데이터 베이스</h4>
         </Link>
-
         <p className="text-xs text-gray-700">데이터를 효율적으로 저장 어쩌구저쩌구</p>
         {/* content */}
         <div className="flex w-full flex-row flex-wrap justify-between">
@@ -37,6 +63,12 @@ export default async function Card() {
         <button className="h-full w-fit text-nowrap bg-[#e0bd6b] px-3 py-2">퀴즈 범위</button>
         <button className="h-full w-full bg-[#e0bd6b]">공부하기</button>
       </div>
+      <Suspense fallback={<div>loading...</div>}>
+        <ClientComp
+          promise={fetchFnc()}
+          text={JSON.stringify(cats)}
+        />
+      </Suspense>
     </article>
   );
 }

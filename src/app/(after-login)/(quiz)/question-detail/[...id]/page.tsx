@@ -1,6 +1,7 @@
 import RatingRadio from '@/app/(after-login)/(quiz)/question-detail/_components/RatingRadio';
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   return (
     <div>
       <h1>My Post: {params.slug}</h1>
