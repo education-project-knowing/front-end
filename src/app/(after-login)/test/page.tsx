@@ -48,7 +48,7 @@ export default async function Card() {
   const twFlexRow = 'flex flex-row text-nowrap';
   const promise = delay();
 
-  const cats = await UserService.getPublicUsers();
+  // const cats = await UserService.getPublicUsers();
   // const postCat = await UserService.postPublicUsers();
   // console.log('Cats fetched:', cats);
   return (
