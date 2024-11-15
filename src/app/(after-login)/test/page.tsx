@@ -34,14 +34,14 @@ const delay = async () => {
   });
 };
 
-const fetchFnc = async (): Promise<any[]> => {
-  // return await UserService.postPublicUsers();
-  return await new Promise<any>(resolve => {
-    setTimeout(async () => {
-      resolve(await UserService.postPublicUsers());
-    }, 2000);
-  });
-};
+// const fetchFnc = async (): Promise<any[]> => {
+//   // return await UserService.postPublicUsers();
+//   return await new Promise<any>(resolve => {
+//     setTimeout(async () => {
+//       resolve(await UserService.postPublicUsers());
+//     }, 2000);
+//   });
+// };
 
 // 메인페이지 퀴즈 카드
 export default async function Card() {
