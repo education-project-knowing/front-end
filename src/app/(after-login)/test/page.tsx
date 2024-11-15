@@ -14,14 +14,14 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: 'Test Page',
       description: 'Description for the test page',
-      url: '/test',
-      images: '/test/opengraph-image', // opengraph-image.tsx 파일의 경로를 설정
+      url: 'https://front-end-two-rose.vercel.app/test',
+      images: 'https://front-end-two-rose.vercel.app/test/opengraph-image', // 절대 경로로 변경
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Test Page',
       description: 'Description for the test page',
-      images: '/test/opengraph-image',
+      images: 'https://front-end-two-rose.vercel.app/test/opengraph-image', // 절대 경로로 변경
     },
   };
 }
