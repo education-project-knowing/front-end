@@ -83,12 +83,12 @@ export default async function Card() {
         <button className="h-full w-fit text-nowrap bg-[#e0bd6b] px-3 py-2">퀴즈 범위</button>
         <button className="h-full w-full bg-[#e0bd6b]">공부하기</button>
       </div>
-      <Suspense fallback={<div>loading...</div>}>
+      {/* <Suspense fallback={<div>loading...</div>}>
         <ClientComp
           promise={fetchFnc()}
           text={JSON.stringify(cats)}
         />
-      </Suspense>
+      </Suspense> */}
     </article>
   );
 }
