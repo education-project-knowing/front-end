@@ -5,6 +5,26 @@ import { UserService } from '@/service/api';
 import ClientComp from '@/app/(after-login)/test/components/client-comp';
 import { Suspense } from 'react';
 import ClientC from '@/app/(after-login)/test/components/client-comp';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Test Page',
+    description: 'This is a test page with a dynamic Open Graph image',
+    openGraph: {
+      title: 'Test Page',
+      description: 'Description for the test page',
+      url: '/test',
+      images: '/test/opengraph-image', // opengraph-image.tsx 파일의 경로를 설정
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Test Page',
+      description: 'Description for the test page',
+      images: '/test/opengraph-image',
+    },
+  };
+}
 
 const delay = async () => {
   return await new Promise<string>(resolve => {
