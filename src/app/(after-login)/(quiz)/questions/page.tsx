@@ -1,3 +1,6 @@
+import { useSearchParams } from 'next/navigation';
+import { cache, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Checkbox } from '@/components/ui/checkbox';
 import SearchInput from '@/components/common/Monocles/SearchInput';
 import StarsRating from '@/app/(after-login)/(quiz)/questions/_components/StarsRating';
@@ -18,13 +21,14 @@ export interface FormInput {
   [key: string]: any;
 }
 
-export default async function Page(props: { searchParams: Promise<string> }) {
-  const searchParams = await props.searchParams;
+export default async function Page({ searchParams }: { searchParams: string }) {
   const itemsPerPage = 10; // 페이지당 아이템 갯수
-  console.log('searchParams', searchParams, searchParams ?? 1);
+  console.log('빵에에요! 퀘스천 디테일이에요!');
   const fetchItems = async (page: any): Promise<Item[]> => {
     try {
-      const response = await fetch(`http://localhost:3001/api/questions?page=${page}&limit=${itemsPerPage}`);
+      const response = await fetch(`http://localhost:3000/api/questions?page=${page}&limit=${itemsPerPage}`, {
+        next: { revalidate: 3 },
+      });
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -41,12 +45,6 @@ export default async function Page(props: { searchParams: Promise<string> }) {
 
   return (
     <div className="flex flex-col">
-      {/* search box */}
-      <SearchInput />
-      {/* TODO: 이부분 전역 상태로 저장했다가
-      추후 검색버튼 누르면 쿼리 스트링에 삽입, 이러면 서버 사이드 랜더링도 안깨짐.  */}
-      {/* filter */}
-      <Filter />
       {/* contents */}
       {items && items.length > 0 ? (
         <ul className="space-y-4">

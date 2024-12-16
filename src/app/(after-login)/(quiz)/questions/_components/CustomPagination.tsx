@@ -10,8 +10,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { LocalIcon } from '@/asset/icon';
-
 interface IPaginationContent {
   totalItems?: number;
   itemsPerPage?: number;

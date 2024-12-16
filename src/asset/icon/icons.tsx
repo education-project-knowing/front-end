@@ -1,19 +1,15 @@
-'use client';
-import dynamic from 'next/dynamic';
+import StarIconComp from '@/asset/icon/icons/ic-star.svg';
 import { FaRegCircle } from 'react-icons/fa';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { CiSearch as CiSearchComp } from 'react-icons/ci';
 import { LiaRandomSolid as LiaRandomSolidComp } from 'react-icons/lia';
 import { FaUserAlt as FaUserAltComp } from 'react-icons/fa';
 import { RxHamburgerMenu as RxHamburgerMenuComp } from 'react-icons/rx';
-const StarIconComp = dynamic(() => import('@/asset/icon/icons/ic-star.svg'), {
-  ssr: false,
-});
 
 export function RoundStarIcon({ ...props }) {
   return (
     <StarIconComp
-      // fill={'#FFD233'}
+      fill={'#FFD233'}
       {...props}
     />
   );

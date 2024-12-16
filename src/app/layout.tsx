@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from 'next-themes';
-import { Providers } from '@/providers/tanstack-query';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,9 +20,7 @@ export default function RootLayout({
       suppressHydrationWarning
       lang="ko">
       <body className={inter.className}>
-        <Providers>
-          <ThemeProvider>{children}</ThemeProvider>
-        </Providers>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

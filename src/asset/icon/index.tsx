@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import * as LocalIcons from '@/asset/icon/icons';
 
