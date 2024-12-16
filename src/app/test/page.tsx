@@ -2,9 +2,6 @@ import Link from 'next/link';
 import { trace } from '@opentelemetry/api';
 import { Span } from '@opentelemetry/api';
 import { UserService } from '@/service/api';
-import ClientComp from '@/app/(after-login)/test/components/client-comp';
-import { Suspense } from 'react';
-import ClientC from '@/app/(after-login)/test/components/client-comp';
 import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -15,13 +12,13 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'Test Page',
       description: 'Description for the test page',
       url: 'https://front-end-two-rose.vercel.app/test',
-      images: 'https://front-end-two-rose.vercel.app/test/opengraph-image', // 절대 경로로 변경
+      images: 'https://9926-223-222-247-87.ngrok-free.app/test/opengraph-image',
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Test Page',
       description: 'Description for the test page',
-      images: 'https://front-end-two-rose.vercel.app/test/opengraph-image', // 절대 경로로 변경
+      images: 'https://9926-223-222-247-87.ngrok-free.app/test/opengraph-image',
     },
   };
 }

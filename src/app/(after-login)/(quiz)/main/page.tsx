@@ -1,4 +1,3 @@
-import Card from '@/app/(after-login)/test/page';
 import { Suspense } from 'react';
 
 export default async function Page() {
